@@ -1,0 +1,59 @@
+package org.example;
+
+import java.util.Objects;
+
+public class Produto {
+    private String nome;
+    private String descricao;
+    private Float preco;
+
+
+    public Produto(String nome, String descricao, Float preco){
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return Objects.equals(nome, produto.nome ) &&
+                Objects.equals(descricao, produto.descricao) &&
+                Objects.equals(preco, produto.preco);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, descricao, preco); // É uma boa prática também sobrescrever hashCode quando sobrescreve equals
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public String getNome(){
+        return this.nome;
+    }
+
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
+    }
+    public String getDescricao(){
+        return this.descricao;
+    }
+
+    public void setPreco(Float preco){
+        this.preco = preco;
+    }
+    public Float getPreco(){
+        return this.preco;
+    }
+
+    public static void Main(String[]args){
+        Produto p1 = new Produto("cadeira", "de plástico e da cor preta", 75.99f);
+        Produto p2 = new Produto("mesa", "de plástico e da cor branca", 149.99f);
+        System.out.println(p1==p2);
+        System.out.println(p1.equals(p2));
+    }
+}
